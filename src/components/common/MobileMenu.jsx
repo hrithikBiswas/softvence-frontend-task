@@ -16,7 +16,7 @@ const MobileMenu = () => {
         { href: '/location', label: 'Our gym location' },
     ];
     return (
-        <div className="md:hidden fixed right-0 top-0 bottom-0">
+        <div className="md:hidden">
             <button
                 onClick={toggleMenu}
                 className="absolute right-[28px] top-[17px] flex items-center justify-center z-50 border-2 border-gray-500 rounded-2xl"
@@ -71,7 +71,7 @@ const MobileMenu = () => {
                             <Link
                                 href="/register"
                                 onClick={closeMenu}
-                                className="block w-full text-center bg-primary-500 hover:bg-primary-600 text-gray-100 transition font-heading text-xl sm:text-2xl py-3 sm:py-4 rounded-[55px] transition-colors duration-200"
+                                className="block w-full text-center bg-primary-500 hover:bg-primary-600 text-gray-100 transition font-heading text-2xl sm:text-2xl py-4 sm:py-4 rounded-[55px] transition-colors duration-200"
                             >
                                 REGISTER
                             </Link>

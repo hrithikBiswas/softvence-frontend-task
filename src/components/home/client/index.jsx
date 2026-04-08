@@ -12,7 +12,7 @@ const Client = () => {
             />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-11 bg-[#ebebeb] rounded-[45px] p-6 sm:p-10">
                 {clientData.map((client, i) => (
-                    <ClientCard key={i} client={client} />
+                    <ClientCard key={i} client={client} index={i} />
                 ))}
             </div>
         </div>

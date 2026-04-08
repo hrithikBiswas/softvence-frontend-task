@@ -1,13 +1,22 @@
+'use client';
 import Image from 'next/image';
 import React from 'react';
+import { motion } from 'motion/react';
 import PlusIcon from '../svg/PlusIcon';
 import Button from '../shared/Button';
 import StarIcon from '../svg/StarIcon';
 import Link from 'next/link';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, index }) => {
+    const animationDelay = Number.parseFloat(index * 0.2).toFixed(1);
     return (
-        <div className="rounded-[45px] p-5 bg-black text-gray-100 max-w-[545px] max-h-[588px]">
+        <motion.div
+            className="rounded-[45px] p-5 bg-black text-gray-100 max-w-[545px] max-h-[588px]"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: animationDelay }}
+        >
             <div>
                 <Image
                     src={product.image}
@@ -48,7 +57,7 @@ const ProductCard = ({ product }) => {
                     }
                 />
             </div>
-        </div>
+        </motion.div>
     );
 };
 

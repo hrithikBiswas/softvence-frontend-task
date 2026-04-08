@@ -1,3 +1,5 @@
+'use client';
+import { motion } from 'motion/react';
 import TextBox from '@/components/common/TextBox';
 import Button from '@/components/shared/Button';
 import Heading from '@/components/shared/Heading';
@@ -14,7 +16,12 @@ const TrainLikeChampion = () => {
                 subtitle={'Unleash Your Power with Expert Boxing Training'}
             />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between gap-12 md:gap-18 bg-black rounded-[45px] p-6 sm:p-10">
-                <div>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.9, delay: 0.2 }}
+                >
                     <Image
                         src={'/body.png'}
                         alt="body"
@@ -22,8 +29,14 @@ const TrainLikeChampion = () => {
                         height={591}
                         className="h-full object-cover rounded-[22px]"
                     />
-                </div>
-                <div className="flex flex-col justify-between">
+                </motion.div>
+                <motion.div
+                    className="flex flex-col justify-between"
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                >
                     <Heading
                         text={'Training Focus Areas:'}
                         margin="mb-5 md:mb-9"
@@ -48,8 +61,14 @@ const TrainLikeChampion = () => {
                             'Boost your stamina with high-intensity circuits that keep you fighting strong till the final round.'
                         }
                     />
-                </div>
-                <div className="flex flex-col justify-between">
+                </motion.div>
+                <motion.div
+                    className="flex flex-col justify-between"
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                >
                     <Heading
                         text={'Why Train With Us:'}
                         margin="mb-5 md:mb-9"
@@ -82,7 +101,7 @@ const TrainLikeChampion = () => {
                             }
                         />
                     </div>
-                </div>
+                </motion.div>
             </div>
         </div>
     );

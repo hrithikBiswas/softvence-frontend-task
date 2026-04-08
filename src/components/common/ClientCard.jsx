@@ -1,10 +1,19 @@
+'use client';
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import React from 'react';
 import StarIcon from '../svg/StarIcon';
 
-const ClientCard = ({ client }) => {
+const ClientCard = ({ client, index }) => {
+    const animationDelay = Number.parseFloat(index * 0.2).toFixed(1);
     return (
-        <div className="rounded-[25px] bg-black text-gray-200 p-6 sm:p-10">
+        <motion.div
+            className="rounded-[25px] bg-black text-gray-200 p-6 sm:p-10"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: animationDelay }}
+        >
             <h1 className="font-medium text-2xl mb-4">{client.title}</h1>
             <p className="text-lg text-justify mb-10">{client.description}</p>
             <div className="flex justify-between items-center">
@@ -43,7 +52,7 @@ const ClientCard = ({ client }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

@@ -1,3 +1,5 @@
+'use client';
+import { motion } from 'motion/react';
 import React from 'react';
 import Heading from '../shared/Heading';
 import Link from 'next/link';
@@ -8,7 +10,13 @@ const Footer = () => {
             <div className="max-w-353.25 mx-auto">
                 <hr className="border-2 border-gray-200 mb-10 sm:mb-16 md:mb-22" />
                 <div className="grid  grid-cols-1 sm:grid-cols-5 lg:grid-cols-7 gap-8 md:gap-14 justify-between">
-                    <div className="col-span-1 sm:col-span-3">
+                    <motion.div
+                        className="col-span-1 sm:col-span-3"
+                        initial={{ opacity: 0, y: -25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                    >
                         <Heading
                             text={'About'}
                             color="text-gray-800"
@@ -53,8 +61,14 @@ const Footer = () => {
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div className="col-span-1">
+                    </motion.div>
+                    <motion.div
+                        className="col-span-1"
+                        initial={{ opacity: 0, y: -25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
                         <Heading
                             text={'Quick Links'}
                             color="text-gray-800"
@@ -75,8 +89,14 @@ const Footer = () => {
                                 <Link href={'/'}>Privacy policy</Link>
                             </li>
                         </ul>
-                    </div>
-                    <div className="col-span-1">
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: -25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7, delay: 0.4 }}
+                        className="col-span-1"
+                    >
                         <Heading
                             text={'Our Services'}
                             color="text-gray-800"
@@ -89,8 +109,14 @@ const Footer = () => {
                             <li>On ground gym</li>
                             <li>Yoga class</li>
                         </ul>
-                    </div>
-                    <div className="col-span-1 sm:col-span-2">
+                    </motion.div>
+                    <motion.div
+                        className="col-span-1 sm:col-span-2"
+                        initial={{ opacity: 0, y: -25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                    >
                         <Heading
                             text={'Contact Info'}
                             color="text-gray-800"
@@ -119,14 +145,20 @@ const Footer = () => {
                                 Workout Hours: 5AM - 8PM
                             </li>
                         </ul>
-                    </div>
+                    </motion.div>
                 </div>
                 <hr className="max-w-60 sm:max-w-100 mx-auto border-2 border-gray-200 mt-8 sm:mt-10 mb-4 sm:mb-10" />
                 <div className="flex justify-center pb-10 sm:pb-22">
-                    <p className="text-neutral-600 text-lg">
+                    <motion.p
+                        className="text-neutral-600 text-lg"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                    >
                         websitename.com©{new Date().getFullYear()} all right
                         reserve
-                    </p>
+                    </motion.p>
                 </div>
             </div>
         </div>

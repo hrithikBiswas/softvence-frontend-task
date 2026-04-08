@@ -1,3 +1,5 @@
+'use client';
+import { motion } from 'motion/react';
 import SocialIcon from '@/components/common/SocialIcon';
 import SpecialtyCard from '@/components/common/SpecialtyCard';
 import {
@@ -40,42 +42,74 @@ const Hero = () => {
                         <div className="absolute right-38 -top-10 lg:-top-14 2xl:-top-20">
                             <BannerrightPolygon />
                         </div>
-                        <Image
-                            src="/banner-2.png"
-                            alt="Banner"
-                            width={978}
-                            height={1054}
-                            className="max-w-[573px] lg:max-w-[978px] max-h-[1054px] -mt-[40px] lg:-mt-[70px] 2xl:-mt-[90px] mr-[95px]"
-                        />
-                        <div className="absolute -bottom-36 left-0 md:left-14">
+                        <motion.div
+                            className=""
+                            initial={{ opacity: 0, x: 100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                        >
                             <Image
-                                src="/banner-text.png"
-                                alt="Power Your Potential"
-                                width={900}
-                                height={280}
-                                className="max-w-[330px] md:max-w-[500px] lg:max-w-[900px] max-h-[280px]"
+                                src="/banner-2.png"
+                                alt="Banner"
+                                width={978}
+                                height={1054}
+                                className="max-w-[573px] lg:max-w-[978px] max-h-[1054px] -mt-[40px] lg:-mt-[70px] 2xl:-mt-[90px] mr-[95px]"
                             />
+                        </motion.div>
+                        <div className="absolute -bottom-36 left-0 md:left-14">
+                            <motion.div
+                                className=""
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6 }}
+                            >
+                                <Image
+                                    src="/banner-text.png"
+                                    alt="Power Your Potential"
+                                    width={900}
+                                    height={280}
+                                    className="max-w-[330px] md:max-w-[500px] lg:max-w-[900px] max-h-[280px]"
+                                />
+                            </motion.div>
                             <div className="hidden sm:flex gap-8 mt-6 mb-6 2xl:mb-0">
-                                <Button
-                                    text={'SHOP NOW'}
-                                    className={
-                                        'bg-transparent border-2 border-white font-medium text-[18px] md:text-[24px] lg:text-[32px] px-10'
-                                    }
-                                />
-                                <Button
-                                    text={
-                                        <Image
-                                            src="/icon/maps.svg"
-                                            alt="map"
-                                            width={36}
-                                            height={36}
-                                            className="w-[24px] md:w-[28px] lg:w-[36px] h-[24px] md:h-[28px] lg:h-[36px]"
-                                        />
-                                    }
-                                    className={
-                                        'bg-transparent border-2 border-white'
-                                    }
-                                />
+                                <motion.div
+                                    className=""
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.4, delay: 0.3 }}
+                                >
+                                    <Button
+                                        text={'SHOP NOW'}
+                                        className={
+                                            'bg-transparent border-2 border-white font-medium text-[18px] md:text-[24px] lg:text-[32px] px-10'
+                                        }
+                                    />
+                                </motion.div>
+                                <motion.div
+                                    className=""
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.4, delay: 0.4 }}
+                                >
+                                    <Button
+                                        text={
+                                            <Image
+                                                src="/icon/maps.svg"
+                                                alt="map"
+                                                width={36}
+                                                height={36}
+                                                className="w-[24px] md:w-[28px] lg:w-[36px] h-[24px] md:h-[28px] lg:h-[36px]"
+                                            />
+                                        }
+                                        className={
+                                            'bg-transparent border-2 border-white'
+                                        }
+                                    />
+                                </motion.div>
                             </div>
                         </div>
                     </div>
@@ -83,12 +117,18 @@ const Hero = () => {
             </div>
             <div className="bg-[url('/vector3.png')] bg-cover bg-no-repeat absolute bottom-0 pt-7 px-4 pb-4">
                 <SpecialtyPolygon />
-                <h1 className="uppercase font-heading font-medium text-[22px] lg:text-[35px] py-2 lg:py-6">
+                <motion.h1
+                    className="uppercase font-heading font-medium text-[22px] lg:text-[35px] py-2 lg:py-6"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, delay: 0.2 }}
+                >
                     our specialty
-                </h1>
+                </motion.h1>
                 <div className="flex flex-col gap-4">
                     {specialtyCardData.map((item, i) => (
-                        <SpecialtyCard key={i} item={item} />
+                        <SpecialtyCard key={i} item={item} index={i} />
                     ))}
                 </div>
             </div>

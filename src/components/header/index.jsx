@@ -7,7 +7,6 @@ import MobileMenu from '../common/MobileMenu';
 const Header = () => {
     return (
         <div className="relative w-full z-20 flex items-start justify-between pl-4.25 sm:pl-6.25 md:pr-6.25 pt-3.5">
-            <MobileMenu />
             <div className="flex items-end gap-10 lg:gap-12 2xl:gap-10">
                 <Logo />
                 <Navbar />
@@ -16,6 +15,7 @@ const Header = () => {
                 text={'REGISTER'}
                 className="hidden md:inline font-heading text-[24px] lg:text-[35px] rounded-[55px] w-[215px] lg:w-[300px] 2xl:w-[320px] h-[65px] lg:h-[86px] 2xl:h-[95px]"
             />
+            <MobileMenu />
         </div>
     );
 };
