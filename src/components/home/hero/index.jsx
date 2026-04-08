@@ -11,7 +11,7 @@ import Image from 'next/image';
 
 const Hero = () => {
     return (
-        <div className="w-full absolute top-3.5 text-white pl-4.25 sm:pl-6.25 md:pr-6.25 z-10">
+        <div className="w-full relative -top-[72px] lg:-top-[97px] 2xl:-top-[110px] text-white pl-4.25 sm:pl-6.25 md:pr-6.25 z-10">
             <div className="relative overflow-hidden">
                 <Image
                     src="/Subtract.svg"

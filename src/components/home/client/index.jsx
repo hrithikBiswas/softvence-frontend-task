@@ -1,0 +1,22 @@
+import ClientCard from '@/components/common/ClientCard';
+import Title from '@/components/shared/Title';
+import { clientData } from '@/contant/data';
+import React from 'react';
+
+const Client = () => {
+    return (
+        <div className="px-4.25 sm:px-6.25 mt-16 sm:mt-20 md:mt-28">
+            <Title
+                title={'What Our Clients Are Saying'}
+                subtitle={'Real Stories, Real Results – Hear From Our Athletes'}
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-11 bg-[#ebebeb] rounded-[45px] p-6 sm:p-10">
+                {clientData.map((client, i) => (
+                    <ClientCard key={i} client={client} />
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default Client;
