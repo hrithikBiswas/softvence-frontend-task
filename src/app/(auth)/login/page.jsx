@@ -6,15 +6,16 @@ import Logo from '@/components/common/Logo';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
 import { delay } from '@/utils/helper';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hook/useAuth';
 
 const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+    const { login } = useAuth();
 
     const formik = useFormik({
         initialValues: {
@@ -41,10 +42,10 @@ const LoginPage = () => {
                 setLoading(true);
                 await delay(2000);
 
-                const { data } = await axios.post('/api/login', values);
+                const result = await login(values.email, values.password, values.remember_me);
 
-                if (!data.success) {
-                    return setErrorMessage(data.message);
+                if (!result.success) {
+                    return setErrorMessage(result.message);
                 }
                 setErrorMessage(null);
                 formik.resetForm();
