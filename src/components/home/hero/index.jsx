@@ -1,6 +1,10 @@
 import SocialIcon from '@/components/common/SocialIcon';
 import SpecialtyCard from '@/components/common/SpecialtyCard';
-import { SpecialtyPolygon } from '@/components/polygon';
+import {
+    BannerleftPolygon,
+    BannerrightPolygon,
+    SpecialtyPolygon,
+} from '@/components/polygon';
 import Button from '@/components/shared/Button';
 import { socialLinksData, specialtyCardData } from '@/contant/data';
 import Image from 'next/image';
@@ -12,14 +16,14 @@ const Hero = () => {
                 <Image
                     src="/Subtract.svg"
                     alt="Hero"
-                    className="w-full h-full"
-                    width={500}
-                    height={300}
+                    className="max-w-[980px] lg:max-w-[1397px] 2xl:max-w-[1516px] max-h-[970px]"
+                    width={1516}
+                    height={970}
                 />
-                <div className="absolute top-[200px] left-[87px] w-full flex justify-between">
+                <div className="absolute top-[120px] lg:top-[170px] 2xl:top-[200px] left-[60px] lg:left-[87px] w-full flex justify-between">
                     <div>
-                        <div className="flex items-center">
-                            <h3 className="font-heading text-2xl">
+                        <div className="flex items-center mb-2">
+                            <h3 className="font-heading text-xl lg:text-2xl">
                                 Follow On:
                             </h3>
                             <div className="flex">
@@ -30,28 +34,32 @@ const Hero = () => {
                                 ))}
                             </div>
                         </div>
+                        <BannerleftPolygon />
                     </div>
                     <div className="relative">
+                        <div className="absolute right-38 -top-10 lg:-top-14 2xl:-top-20">
+                            <BannerrightPolygon />
+                        </div>
                         <Image
                             src="/banner-2.png"
                             alt="Banner"
                             width={978}
                             height={1054}
-                            className="-mt-[90px] mr-[95px]"
+                            className="max-w-[573px] lg:max-w-[978px] max-h-[1054px] -mt-[40px] lg:-mt-[70px] 2xl:-mt-[90px] mr-[95px]"
                         />
-                        <div className="absolute -bottom-36 left-14">
+                        <div className="absolute -bottom-36 left-0 md:left-14">
                             <Image
                                 src="/banner-text.png"
                                 alt="Power Your Potential"
                                 width={900}
                                 height={280}
-                                className=""
+                                className="max-w-[330px] md:max-w-[500px] lg:max-w-[900px] max-h-[280px]"
                             />
-                            <div className="flex gap-8 mt-6">
+                            <div className="flex gap-8 mt-6 mb-6 2xl:mb-0">
                                 <Button
                                     text={'SHOP NOW'}
                                     className={
-                                        'bg-transparent border-2 border-white font-medium text-[32px] px-10'
+                                        'bg-transparent border-2 border-white font-medium text-[18px] md:text-[24px] lg:text-[32px] px-10'
                                     }
                                 />
                                 <Button
@@ -61,6 +69,7 @@ const Hero = () => {
                                             alt="map"
                                             width={36}
                                             height={36}
+                                            className="w-[24px] md:w-[28px] lg:w-[36px] h-[24px] md:h-[28px] lg:h-[36px]"
                                         />
                                     }
                                     className={
@@ -72,9 +81,9 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-[url('/vector3.png')] bg-cover bg-no-repeat absolute bottom-0 pt-9 px-4 pb-4">
+            <div className="bg-[url('/vector3.png')] bg-cover bg-no-repeat absolute bottom-0 pt-7 px-4 pb-4">
                 <SpecialtyPolygon />
-                <h1 className="uppercase font-heading font-medium text-[35px] py-6">
+                <h1 className="uppercase font-heading font-medium text-[22px] lg:text-[35px] py-2 lg:py-6">
                     our specialty
                 </h1>
                 <div className="flex flex-col gap-4">

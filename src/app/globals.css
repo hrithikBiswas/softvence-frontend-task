@@ -24,6 +24,15 @@
   --font-body: var(--font-satoshi);
 }
 
+@theme {
+  --breakpoint-xs: 375px;
+  --breakpoint-sm: 641px;
+  --breakpoint-md: 769px;
+  --breakpoint-lg: 1025px;
+  --breakpoint-xl: 1281px;
+  --breakpoint-2xl: 1441px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     --background: #0a0a0a;

@@ -1,3 +1,5 @@
 import SpecialtyPolygon from './SpecialtyPolygon';
+import BannerleftPolygon from './BannerleftPolygon';
+import BannerrightPolygon from './BannerrightPolygon';
 
-export { SpecialtyPolygon };
+export { SpecialtyPolygon, BannerleftPolygon, BannerrightPolygon };

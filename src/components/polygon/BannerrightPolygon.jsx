@@ -1,16 +1,10 @@
 import React from 'react';
 import Polygon from '../shared/Polygon';
 
-const SpecialtyPolygon = () => {
+const BannerrightPolygon = () => {
     return (
         <div className="flex flex-col gap-2 lg:gap-4">
             <div className="flex gap-2 lg:gap-5">
-                <span></span>
-                <span></span>
-                <span></span>
-                <Polygon />
-            </div>
-            <div className="flex gap-2 lg:gap-4">
                 <Polygon />
                 <Polygon />
                 <Polygon />
@@ -18,27 +12,18 @@ const SpecialtyPolygon = () => {
             <div className="flex gap-2 lg:gap-4">
                 <Polygon />
                 <Polygon />
+            </div>
+            <div className="flex gap-2 lg:gap-4">
                 <Polygon />
-                <span></span>
-                <Polygon />
-                <span></span>
                 <Polygon />
             </div>
             <div className="flex gap-2 lg:gap-4">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
                 <Polygon />
                 <Polygon />
-                <span></span>
-                <span></span>
                 <Polygon />
             </div>
         </div>
     );
 };
 
-export default SpecialtyPolygon;
+export default BannerrightPolygon;
