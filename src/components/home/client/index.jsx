@@ -1,6 +1,6 @@
 import ClientCard from '@/components/common/ClientCard';
 import Title from '@/components/shared/Title';
-import { clientData } from '@/contant/data';
+import { clientData } from '@/constant/data';
 import React from 'react';
 
 const Client = () => {

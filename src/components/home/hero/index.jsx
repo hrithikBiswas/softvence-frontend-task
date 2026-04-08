@@ -8,7 +8,7 @@ import {
     SpecialtyPolygon,
 } from '@/components/polygon';
 import Button from '@/components/shared/Button';
-import { socialLinksData, specialtyCardData } from '@/contant/data';
+import { socialLinksData, specialtyCardData } from '@/constant/data';
 import Image from 'next/image';
 
 const Hero = () => {
@@ -44,7 +44,7 @@ const Hero = () => {
                         </div>
                         <motion.div
                             className=""
-                            initial={{ opacity: 0, x: 100 }}
+                            initial={{ opacity: 0, x: 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}

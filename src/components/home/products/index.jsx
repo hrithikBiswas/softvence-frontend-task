@@ -1,6 +1,6 @@
 import ProductCard from '@/components/common/ProductCard';
 import Title from '@/components/shared/Title';
-import { productData } from '@/contant/data';
+import { productData } from '@/constant/data';
 import React from 'react';
 
 const Products = () => {
