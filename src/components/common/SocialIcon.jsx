@@ -12,7 +12,7 @@ const SocialIcon = ({ item }) => {
             <Image
                 src={item.icon}
                 alt={item.name}
-                className=""
+                className=" w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]"
                 width={28}
                 height={28}
             />

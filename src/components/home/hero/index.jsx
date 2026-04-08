@@ -11,16 +11,16 @@ import Image from 'next/image';
 
 const Hero = () => {
     return (
-        <div className="w-full absolute top-3.5 text-white px-6.25 z-10">
+        <div className="w-full absolute top-3.5 text-white pl-4.25 sm:pl-6.25 md:pr-6.25 z-10">
             <div className="relative overflow-hidden">
                 <Image
                     src="/Subtract.svg"
                     alt="Hero"
-                    className="max-w-[980px] lg:max-w-[1397px] 2xl:max-w-[1516px] max-h-[970px]"
+                    className="max-w-[980px] lg:max-w-[1397px] 2xl:max-w-[1478px] 3xl:max-w-[1516px] max-h-[970px]"
                     width={1516}
                     height={970}
                 />
-                <div className="absolute top-[120px] lg:top-[170px] 2xl:top-[200px] left-[60px] lg:left-[87px] w-full flex justify-between">
+                <div className="absolute top-[120px] lg:top-[170px] 2xl:top-[200px] left-[40px] sm:left-[60px] lg:left-[87px] w-full flex justify-between">
                     <div>
                         <div className="flex items-center mb-2">
                             <h3 className="font-heading text-xl lg:text-2xl">
@@ -28,7 +28,7 @@ const Hero = () => {
                             </h3>
                             <div className="flex">
                                 {socialLinksData.map((item, i) => (
-                                    <div key={i} className="ml-4">
+                                    <div key={i} className="ml-2 sm:ml-4">
                                         <SocialIcon item={item} />
                                     </div>
                                 ))}
@@ -55,7 +55,7 @@ const Hero = () => {
                                 height={280}
                                 className="max-w-[330px] md:max-w-[500px] lg:max-w-[900px] max-h-[280px]"
                             />
-                            <div className="flex gap-8 mt-6 mb-6 2xl:mb-0">
+                            <div className="hidden sm:flex gap-8 mt-6 mb-6 2xl:mb-0">
                                 <Button
                                     text={'SHOP NOW'}
                                     className={

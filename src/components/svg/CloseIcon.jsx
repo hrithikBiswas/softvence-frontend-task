@@ -3,7 +3,7 @@ import React from 'react';
 const CloseIcon = () => {
     return (
         <svg
-            className="w-8 h-8 text-gray-800 "
+            className="w-8 h-8 text-gray-700 hover:scale-105 hover:text-gray-800 transition cursor-pointer duration-300"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
