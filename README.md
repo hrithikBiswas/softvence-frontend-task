@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Softvence Frontend Job Task Assessment
 
-## Getting Started
+## Features
 
-First, run the development server:
+- User Registration with email verification
+- 6-digit OTP verification
+- JWT-based secure login
+- Remember me functionality
+- Protected user details API
+- Responsive design with Tailwind CSS
+- Smooth animations with Framer Motion
+- Form validation with Formik and Yup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tech Stack
+
+- **Framework:** Next.js 16.2.2
+- **Database:** MongoDB with Mongoose
+- **Auth:** JWT (jsonwebtoken)
+- **Password:** bcrypt
+- **Styling:** Tailwind CSS 4
+- **Forms:** Formik + Yup
+- **Animations:** Motion (Framer Motion)
+- **HTTP:** Axios
+- **Icons:** React Icons
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── (auth)/
+│   │   ├── login/page.jsx
+│   │   ├── registration/page.jsx
+│   │   └── verify-otp/page.jsx
+│   ├── api/
+│   │   ├── login/route.js
+│   │   ├── logout/route.js
+│   │   ├── register/route.js
+│   │   ├── verify_otp/route.js
+│   │   ├── user-detail/route.js
+│   │   └── health/route.js
+│   ├── globals.css
+│   ├── layout.js
+│   └── page.js
+├── components/
+│   ├── common/        (Logo, Navbar, MobileMenu, etc.)
+│   ├── home/          (hero, products, client, cta)
+│   ├── header/
+│   ├── footer/
+│   ├── shared/        (Button, Title, Heading)
+│   ├── svg/           (icons)
+│   └── polygon/       (decorative elements)
+├── hook/
+│   └── useAuth.js     (authentication hook)
+├── lib/
+│   └── mongoDB.js     (database connection)
+├── models/
+│   └── user.model.js
+├── utils/
+│   └── helper.js      (JWT utilities)
+└── constant/
+    └── data.js        (static data)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Create a `.env` file:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+MONGODB_URI=mongodb://localhost:27017/softvence
+SECRET_KEY=your-secret-key-here
+```
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Running
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run dev      # Development
+npm run build    # Production build
+npm start        # Start production server
+```
 
-## Deploy on Vercel
+## API Endpoints
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Method | Endpoint           | Description                |
+| ------ | ------------------ | -------------------------- |
+| POST   | `/api/register`    | Register user, returns OTP |
+| POST   | `/api/verify_otp`  | Verify email OTP           |
+| POST   | `/api/login`       | Login, sets JWT cookie     |
+| POST   | `/api/logout`      | Clear auth cookie          |
+| GET    | `/api/user-detail` | Get authenticated user     |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Authentication Flow
+
+1. **Register** - User signs up, receives OTP
+2. **Verify OTP** - Email verified, redirect to login
+3. **Login** - Credentials validated, JWT cookie set
+4. **Access** - Protected routes verified via cookie
+5. **Logout** - Cookie cleared, session terminated
+
+## useAuth Hook
+
+```javascript
+const { user, isAuthenticated, loading, login, logout, checkAuth } = useAuth();
+```
+
+| Property                              | Type     | Description   |
+| ------------------------------------- | -------- | ------------- |
+| `user`                                | object   | Current user  |
+| `isAuthenticated`                     | boolean  | Auth status   |
+| `loading`                             | boolean  | Loading state |
+| `login(email, password, remember_me)` | function | Login         |
+| `logout()`                            | function | Logout        |
+| `checkAuth()`                         | function | Re-check auth |
+
+## User Schema
+
+```javascript
+{
+  first_name: String,           // required
+  last_name: String,            // required
+  email: String,                // required, unique
+  password: String,             // required, hashed
+  terms: Boolean,               // default: false
+  otp: Number,                 // email verification OTP
+  password_forget_otp: Number,  // password reset OTP
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+## Cookie Settings
+
+- `auth_token`: httpOnly, secure cookie
+- Duration: 7 days (remember me) or 24 hours (default)
+- SameSite: Lax
