@@ -63,7 +63,7 @@ const RegistrationPage = () => {
                 }
                 setErrorMessage(null);
                 formik.resetForm();
-                router.push('/login');
+                router.push(`/verify-otp?email=${encodeURIComponent(values.email)}`);
             } catch (error) {
                 console.log('register error: ', error.message);
             } finally {
