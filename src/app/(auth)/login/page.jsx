@@ -3,13 +3,18 @@ import { motion } from 'motion/react';
 import { useState } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/common/Logo';
-import Button from '@/components/shared/Button';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
+import { delay } from '@/utils/helper';
+import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const formik = useFormik({
         initialValues: {
@@ -28,15 +33,27 @@ const LoginPage = () => {
             password: Yup.string()
                 .required('Required')
                 .min(8, 'Must be at least 8 characters long'),
-            remember_me: Yup.string(),
+            remember_me: Yup.boolean(),
         }),
 
-        onSubmit: (values) => {
-            const { email, password } = values;
-            console.log(values);
-            formik.resetForm();
+        onSubmit: async (values) => {
+            try {
+                setLoading(true);
+                await delay(2000);
 
-            // signUp(email, password, fullName);
+                const { data } = await axios.post('/api/login', values);
+
+                if (!data.success) {
+                    return setErrorMessage(data.message);
+                }
+                setErrorMessage(null);
+                formik.resetForm();
+                router.push('/');
+            } catch (error) {
+                console.log('Login error:', error.message);
+            } finally {
+                setLoading(false);
+            }
         },
     });
 
@@ -67,9 +84,15 @@ const LoginPage = () => {
                             </p>
                         </motion.div>
 
+                        {errorMessage && (
+                            <div className="text-red-600 bg-red-600/20 rounded-2xl p-4 text-center mb-5">
+                                {errorMessage}
+                            </div>
+                        )}
+
                         <motion.form
                             onSubmit={formik.handleSubmit}
-                            className="space-y-6"
+                            className="space-y-5"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
@@ -149,7 +172,7 @@ const LoginPage = () => {
                                     name="remember_me"
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    value={formik.values.remember_me}
+                                    checked={formik.values.remember_me}
                                     className="mt-1 w-5 h-5 accent-primary-500"
                                 />
                                 <label
@@ -169,11 +192,13 @@ const LoginPage = () => {
                                 </Link>
                             </div>
 
-                            <Button
+                            <button
                                 type="submit"
-                                text="Sign In"
-                                className="w-full text-lg sm:text-xl font-heading hover:bg-primary-600 transition"
-                            />
+                                disabled={loading}
+                                className={`${loading ? 'bg-primary-500/60 text-gray-400 cursor-no-drop' : 'bg-primary-500 text-white hover:bg-primary-600 cursor-pointer'} rounded-[18px] px-4 py-4 w-full text-lg sm:text-xl font-heading transition`}
+                            >
+                                {loading ? 'Signing In...' : 'Sign In'}
+                            </button>
                         </motion.form>
 
                         <motion.p
