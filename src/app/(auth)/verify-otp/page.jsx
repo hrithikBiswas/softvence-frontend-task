@@ -18,6 +18,8 @@ const VerifyOtpPage = () => {
     const searchParams = useSearchParams();
     const email = searchParams.get('email');
 
+    console.log(email);
+
     useEffect(() => {
         if (!email) {
             router.push('/registration');
@@ -42,22 +44,22 @@ const VerifyOtpPage = () => {
         }
     };
 
-    const handlePaste = (e) => {
-        e.preventDefault();
-        const pastedData = e.clipboardData.getData('text').slice(0, 6);
-        if (!/^\d+$/.test(pastedData)) return;
+    // const handlePaste = (e) => {
+    //     e.preventDefault();
+    //     const pastedData = e.clipboardData.getData('text').slice(0, 6);
+    //     if (!/^\d+$/.test(pastedData)) return;
 
-        const newOtp = [...otp];
-        pastedData.split('').forEach((char, index) => {
-            if (index < 6) {
-                newOtp[index] = char;
-            }
-        });
-        setOtp(newOtp);
+    //     const newOtp = [...otp];
+    //     pastedData.split('').forEach((char, index) => {
+    //         if (index < 6) {
+    //             newOtp[index] = char;
+    //         }
+    //     });
+    //     setOtp(newOtp);
 
-        const lastFilledIndex = Math.min(pastedData.length - 1, 5);
-        inputRefs.current[lastFilledIndex]?.focus();
-    };
+    //     const lastFilledIndex = Math.min(pastedData.length - 1, 5);
+    //     inputRefs.current[lastFilledIndex]?.focus();
+    // };
 
     const handleVerify = async () => {
         const otpValue = otp.join('');
@@ -95,31 +97,31 @@ const VerifyOtpPage = () => {
         }
     };
 
-    const handleResend = async () => {
-        try {
-            setResendLoading(true);
-            setErrorMessage(null);
-            await delay(1000);
+    // const handleResend = async () => {
+    //     try {
+    //         setResendLoading(true);
+    //         setErrorMessage(null);
+    //         await delay(1000);
 
-            const { data } = await axios.post('/api/register', {
-                email,
-                password: 'temp',
-                first_name: 'temp',
-                last_name: 'temp',
-            });
+    //         const { data } = await axios.post('/api/register', {
+    //             email,
+    //             password: 'temp',
+    //             first_name: 'temp',
+    //             last_name: 'temp',
+    //         });
 
-            if (data.success) {
-                setSuccessMessage(`New OTP sent to ${email}`);
-            } else {
-                setErrorMessage(data.message);
-            }
-        } catch (error) {
-            console.log('Resend OTP error:', error.message);
-            setErrorMessage('Failed to resend OTP');
-        } finally {
-            setResendLoading(false);
-        }
-    };
+    //         if (data.success) {
+    //             setSuccessMessage(`New OTP sent to ${email}`);
+    //         } else {
+    //             setErrorMessage(data.message);
+    //         }
+    //     } catch (error) {
+    //         console.log('Resend OTP error:', error.message);
+    //         setErrorMessage('Failed to resend OTP');
+    //     } finally {
+    //         setResendLoading(false);
+    //     }
+    // };
 
     return (
         <div className="min-h-screen flex flex-col">
@@ -172,7 +174,7 @@ const VerifyOtpPage = () => {
                         >
                             <div
                                 className="flex justify-center gap-3 mb-8"
-                                onPaste={handlePaste}
+                                // onPaste={handlePaste}
                             >
                                 {otp.map((digit, index) => (
                                     <input
@@ -203,7 +205,7 @@ const VerifyOtpPage = () => {
                                 {loading ? 'Verifying...' : 'Verify OTP'}
                             </button>
 
-                            <div className="text-center mt-6">
+                            {/* <div className="text-center mt-6">
                                 <p className="text-neutral-400 text-base mb-2">
                                     Didn&apos;t receive the code?
                                 </p>
@@ -216,7 +218,7 @@ const VerifyOtpPage = () => {
                                         ? 'Sending...'
                                         : 'Resend OTP'}
                                 </button>
-                            </div>
+                            </div> */}
                         </motion.div>
 
                         <motion.p
