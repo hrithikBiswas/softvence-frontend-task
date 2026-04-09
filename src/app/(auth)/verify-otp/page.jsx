@@ -1,13 +1,13 @@
 'use client';
 import { motion } from 'motion/react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/common/Logo';
 import axios from 'axios';
 import { delay } from '@/utils/helper';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const VerifyOtpPage = () => {
+const VerifyOtpContent = () => {
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [errorMessage, setErrorMessage] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -247,5 +247,11 @@ const VerifyOtpPage = () => {
         </div>
     );
 };
+
+const VerifyOtpPage = () => (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+        <VerifyOtpContent />
+    </Suspense>
+);
 
 export default VerifyOtpPage;
