@@ -6,18 +6,24 @@ import PlusIcon from '../svg/PlusIcon';
 import Button from '../shared/Button';
 import StarIcon from '../svg/StarIcon';
 import Link from 'next/link';
+import { getStaggerDelay, smoothTransition, viewportSettings } from '@/lib/animations';
 
 const ProductCard = ({ product, index }) => {
-    const animationDelay = Number.parseFloat(index * 0.2).toFixed(1);
     return (
         <motion.div
             className="rounded-[45px] p-5 bg-black text-gray-100 max-w-[545px] max-h-[588px]"
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: animationDelay }}
+            viewport={viewportSettings}
+            transition={{ ...smoothTransition, delay: getStaggerDelay(index, 0.1) }}
+            whileHover={{ y: -6 }}
+            layout
         >
-            <div>
+            <motion.div
+                className="overflow-hidden rounded-4xl"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            >
                 <Image
                     src={product.image}
                     alt={product.image}
@@ -25,7 +31,7 @@ const ProductCard = ({ product, index }) => {
                     height={425}
                     className="rounded-4xl w-full"
                 />
-            </div>
+            </motion.div>
             <div className="flex justify-between items-end mt-10">
                 <div className="flex flex-col gap-2">
                     <Link href={'#'} className="font-medium text-2xl">
@@ -50,12 +56,18 @@ const ProductCard = ({ product, index }) => {
                         </div>
                     </div>
                 </div>
-                <Button
-                    text={<PlusIcon />}
-                    className={
-                        'rounded-[17px] bg-primary-600 hover:bg-primary-700 transition cursor-pointer'
-                    }
-                />
+                <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                >
+                    <Button
+                        text={<PlusIcon />}
+                        className={
+                            'rounded-[17px] bg-primary-600 hover:bg-primary-700 cursor-pointer'
+                        }
+                    />
+                </motion.div>
             </div>
         </motion.div>
     );

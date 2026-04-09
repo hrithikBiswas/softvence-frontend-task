@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import React from 'react';
 import Heading from '../shared/Heading';
 import Link from 'next/link';
+import { fadeInDown, smoothTransition, viewportSettings, getStaggerDelay } from '@/lib/animations';
 
 const Footer = () => {
     return (
@@ -12,10 +13,10 @@ const Footer = () => {
                 <div className="grid  grid-cols-1 sm:grid-cols-5 lg:grid-cols-7 gap-8 md:gap-14 justify-between">
                     <motion.div
                         className="col-span-1 sm:col-span-3"
-                        initial={{ opacity: 0, y: -25 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
+                        variants={fadeInDown}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={viewportSettings}
                     >
                         <Heading
                             text={'About'}
@@ -36,38 +37,45 @@ const Footer = () => {
                             </h4>
                             <ul className="flex gap-4 ml-4">
                                 <li>
-                                    <Link
-                                        className="font-bold text-lg"
-                                        href="https://www.facebook.com/softvenceagency"
-                                    >
-                                        Fb
-                                    </Link>
+                                    <motion.div whileHover={{ x: 2 }}>
+                                        <Link
+                                            className="font-bold text-lg transition-opacity"
+                                            href="https://www.facebook.com/softvenceagency"
+                                        >
+                                            Fb
+                                        </Link>
+                                    </motion.div>
                                 </li>
                                 <li>
-                                    <Link
-                                        className="font-bold text-lg"
-                                        href="https://www.instagram.com/softvence/?hl=en"
-                                    >
-                                        In
-                                    </Link>
+                                    <motion.div whileHover={{ x: 2 }}>
+                                        <Link
+                                            className="font-bold text-lg"
+                                            href="https://www.instagram.com/softvence/?hl=en"
+                                        >
+                                            In
+                                        </Link>
+                                    </motion.div>
                                 </li>
                                 <li>
-                                    <Link
-                                        className="font-bold text-lg"
-                                        href="#"
-                                    >
-                                        Tw
-                                    </Link>
+                                    <motion.div whileHover={{ x: 2 }}>
+                                        <Link
+                                            className="font-bold text-lg"
+                                            href="#"
+                                        >
+                                            Tw
+                                        </Link>
+                                    </motion.div>
                                 </li>
                             </ul>
                         </div>
                     </motion.div>
                     <motion.div
                         className="col-span-1"
-                        initial={{ opacity: 0, y: -25 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        variants={fadeInDown}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={viewportSettings}
+                        transition={{ ...smoothTransition, delay: getStaggerDelay(1, 0.1) }}
                     >
                         <Heading
                             text={'Quick Links'}
@@ -76,25 +84,24 @@ const Footer = () => {
                             margin={'mb-5'}
                         />
                         <ul className="flex flex-col text-base gap-3">
-                            <li>
-                                <Link href={'/'}>Home</Link>
-                            </li>
-                            <li>
-                                <Link href={'/'}>Our gym location</Link>
-                            </li>
-                            <li>
-                                <Link href={'/'}>Contact Us</Link>
-                            </li>
-                            <li>
-                                <Link href={'/'}>Privacy policy</Link>
-                            </li>
+                            {[0, 1, 2, 3].map((i) => (
+                                <motion.li
+                                    key={i}
+                                    whileHover={{ x: 3 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    <Link href={'/'}>
+                                        {['Home', 'Our gym location', 'Contact Us', 'Privacy policy'][i]}
+                                    </Link>
+                                </motion.li>
+                            ))}
                         </ul>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: -25 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.7, delay: 0.4 }}
+                        transition={{ ...smoothTransition, delay: getStaggerDelay(2, 0.1) }}
                         className="col-span-1"
                     >
                         <Heading
@@ -115,7 +122,7 @@ const Footer = () => {
                         initial={{ opacity: 0, y: -25 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
+                        transition={{ ...smoothTransition, delay: getStaggerDelay(3, 0.1) }}
                     >
                         <Heading
                             text={'Contact Info'}
@@ -126,15 +133,19 @@ const Footer = () => {
                         <ul className="flex flex-col text-base gap-3">
                             <li>
                                 <span className="font-medium">Mail: </span>
-                                <Link href="mailto:info@example.com">
-                                    info@example.com
-                                </Link>
+                                <motion.span whileHover={{ opacity: 0.7 }}>
+                                    <Link href="mailto:info@example.com">
+                                        info@example.com
+                                    </Link>
+                                </motion.span>
                             </li>
                             <li>
                                 <span className="font-medium">Call: </span>
-                                <Link href="callto:+91 9876543210">
-                                    +91 9876543210
-                                </Link>
+                                <motion.span whileHover={{ opacity: 0.7 }}>
+                                    <Link href="callto:+91 9876543210">
+                                        +91 9876543210
+                                    </Link>
+                                </motion.span>
                             </li>
                             <li>
                                 <span className="font-medium">Location: </span>
@@ -154,7 +165,7 @@ const Footer = () => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
                     >
                         websitename.com©{new Date().getFullYear()} all right
                         reserve

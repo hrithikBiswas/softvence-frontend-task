@@ -19,8 +19,6 @@ const Header = () => {
         return router.push('/registration');
     };
 
-    console.log(user);
-
     return (
         <div className="relative w-full z-20 flex items-start justify-between pl-4.25 sm:pl-6.25 md:pr-6.25 pt-3.5">
             <div className="flex items-end gap-10 lg:gap-12 2xl:gap-10">

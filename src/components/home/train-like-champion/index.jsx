@@ -7,6 +7,7 @@ import Title from '@/components/shared/Title';
 import PlayIcon from '@/components/svg/PlayIcon';
 import Image from 'next/image';
 import React from 'react';
+import { fadeInLeft, fadeInRight, smoothTransition, viewportSettings } from '@/lib/animations';
 
 const TrainLikeChampion = () => {
     return (
@@ -17,10 +18,10 @@ const TrainLikeChampion = () => {
             />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between gap-12 md:gap-18 bg-black rounded-[45px] p-6 sm:p-10">
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.9, delay: 0.2 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={viewportSettings}
+                    transition={{ ...smoothTransition, delay: 0.1 }}
                 >
                     <Image
                         src={'/body.png'}
@@ -32,10 +33,10 @@ const TrainLikeChampion = () => {
                 </motion.div>
                 <motion.div
                     className="flex flex-col justify-between"
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    variants={fadeInLeft}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={viewportSettings}
                 >
                     <Heading
                         text={'Training Focus Areas:'}
@@ -64,10 +65,10 @@ const TrainLikeChampion = () => {
                 </motion.div>
                 <motion.div
                     className="flex flex-col justify-between"
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    variants={fadeInRight}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={viewportSettings}
                 >
                     <Heading
                         text={'Why Train With Us:'}
@@ -91,15 +92,21 @@ const TrainLikeChampion = () => {
                         <Button
                             text={'Punch Now'}
                             className={
-                                ' rounded-[20px] bg-primary-600 px-14 py-5 font-bold text-2xl hover:bg-primary-700 transition'
+                                'rounded-[20px] bg-primary-600 px-14 py-5 font-bold text-2xl hover:bg-primary-700'
                             }
                         />
-                        <Button
-                            text={<PlayIcon />}
-                            className={
-                                'group/item bg-transparent transition border-2 border-dashed rounded-full border-primary-700 hover:border-primary-700/70'
-                            }
-                        />
+                        <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                        >
+                            <Button
+                                text={<PlayIcon />}
+                                className={
+                                    'group/item bg-transparent border-2 border-dashed rounded-full border-primary-700 hover:border-primary-700/70'
+                                }
+                            />
+                        </motion.div>
                     </div>
                 </motion.div>
             </div>

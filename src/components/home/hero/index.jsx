@@ -10,6 +10,7 @@ import {
 import Button from '@/components/shared/Button';
 import { socialLinksData, specialtyCardData } from '@/constant/data';
 import Image from 'next/image';
+import { slideInFromRight, slideInFromBottom, smoothTransition, getStaggerDelay } from '@/lib/animations';
 
 const Hero = () => {
     return (
@@ -31,7 +32,7 @@ const Hero = () => {
                             <div className="flex">
                                 {socialLinksData.map((item, i) => (
                                     <div key={i} className="ml-2 sm:ml-4">
-                                        <SocialIcon item={item} />
+                                        <SocialIcon item={item} index={i} />
                                     </div>
                                 ))}
                             </div>
@@ -43,11 +44,10 @@ const Hero = () => {
                             <BannerrightPolygon />
                         </div>
                         <motion.div
-                            className=""
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
+                            variants={slideInFromRight}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: '-100px' }}
                         >
                             <Image
                                 src="/banner-2.png"
@@ -59,11 +59,11 @@ const Hero = () => {
                         </motion.div>
                         <div className="absolute -bottom-36 left-0 md:left-14">
                             <motion.div
-                                className=""
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
+                                variants={slideInFromBottom}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: '-50px' }}
+                                transition={{ ...smoothTransition, delay: 0.1 }}
                             >
                                 <Image
                                     src="/banner-text.png"
@@ -75,11 +75,10 @@ const Hero = () => {
                             </motion.div>
                             <div className="hidden sm:flex gap-8 mt-6 mb-6 2xl:mb-0">
                                 <motion.div
-                                    className=""
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: 0.3 }}
+                                    transition={{ ...smoothTransition, delay: 0.25 }}
                                 >
                                     <Button
                                         text={'SHOP NOW'}
@@ -89,11 +88,10 @@ const Hero = () => {
                                     />
                                 </motion.div>
                                 <motion.div
-                                    className=""
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: 0.4 }}
+                                    transition={{ ...smoothTransition, delay: 0.35 }}
                                 >
                                     <Button
                                         text={
@@ -122,7 +120,7 @@ const Hero = () => {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1.5, delay: 0.2 }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
                 >
                     our specialty
                 </motion.h1>
