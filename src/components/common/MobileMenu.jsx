@@ -31,7 +31,7 @@ const MobileMenu = () => {
         <div className="md:hidden">
             <motion.button
                 onClick={toggleMenu}
-                className="absolute right-[28px] top-[17px] flex items-center justify-center z-50 border-2 border-gray-500 rounded-2xl"
+                className="absolute right-[28px] top-[17px] flex items-center justify-center bg-black z-50 border-2 border-gray-500 rounded-2xl"
                 aria-label="Toggle menu"
                 whileTap={{ scale: 0.95 }}
             >
