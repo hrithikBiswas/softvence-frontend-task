@@ -6,7 +6,11 @@ import PlusIcon from '../svg/PlusIcon';
 import Button from '../shared/Button';
 import StarIcon from '../svg/StarIcon';
 import Link from 'next/link';
-import { getStaggerDelay, smoothTransition, viewportSettings } from '@/lib/animations';
+import {
+    getStaggerDelay,
+    smoothTransition,
+    viewportSettings,
+} from '@/lib/animations';
 
 const ProductCard = ({ product, index }) => {
     return (
@@ -15,7 +19,10 @@ const ProductCard = ({ product, index }) => {
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportSettings}
-            transition={{ ...smoothTransition, delay: getStaggerDelay(index, 0.1) }}
+            transition={{
+                ...smoothTransition,
+                delay: getStaggerDelay(index, 0.1),
+            }}
             whileHover={{ y: -6 }}
             layout
         >
@@ -34,11 +41,14 @@ const ProductCard = ({ product, index }) => {
             </motion.div>
             <div className="flex justify-between items-end mt-10">
                 <div className="flex flex-col gap-2">
-                    <Link href={'#'} className="font-medium text-2xl">
+                    <Link
+                        href={'#'}
+                        className="font-medium text-xl xs:text-2xl"
+                    >
                         {product.name}
                     </Link>
                     <div className="flex gap-4 items-center">
-                        <h3 className="font-medium text-[24px]">
+                        <h3 className="font-medium text-[20px] xs:text-[24px]">
                             {product.currency} {product.price.toFixed(2)}
                         </h3>
                         <div className="flex gap-1">

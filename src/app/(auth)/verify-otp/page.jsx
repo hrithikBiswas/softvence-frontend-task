@@ -11,7 +11,6 @@ const VerifyOtpContent = () => {
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [errorMessage, setErrorMessage] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [resendLoading, setResendLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState(null);
     const inputRefs = useRef([]);
     const router = useRouter();
@@ -43,23 +42,6 @@ const VerifyOtpContent = () => {
             inputRefs.current[index - 1]?.focus();
         }
     };
-
-    // const handlePaste = (e) => {
-    //     e.preventDefault();
-    //     const pastedData = e.clipboardData.getData('text').slice(0, 6);
-    //     if (!/^\d+$/.test(pastedData)) return;
-
-    //     const newOtp = [...otp];
-    //     pastedData.split('').forEach((char, index) => {
-    //         if (index < 6) {
-    //             newOtp[index] = char;
-    //         }
-    //     });
-    //     setOtp(newOtp);
-
-    //     const lastFilledIndex = Math.min(pastedData.length - 1, 5);
-    //     inputRefs.current[lastFilledIndex]?.focus();
-    // };
 
     const handleVerify = async () => {
         const otpValue = otp.join('');
@@ -96,32 +78,6 @@ const VerifyOtpContent = () => {
             setLoading(false);
         }
     };
-
-    // const handleResend = async () => {
-    //     try {
-    //         setResendLoading(true);
-    //         setErrorMessage(null);
-    //         await delay(1000);
-
-    //         const { data } = await axios.post('/api/register', {
-    //             email,
-    //             password: 'temp',
-    //             first_name: 'temp',
-    //             last_name: 'temp',
-    //         });
-
-    //         if (data.success) {
-    //             setSuccessMessage(`New OTP sent to ${email}`);
-    //         } else {
-    //             setErrorMessage(data.message);
-    //         }
-    //     } catch (error) {
-    //         console.log('Resend OTP error:', error.message);
-    //         setErrorMessage('Failed to resend OTP');
-    //     } finally {
-    //         setResendLoading(false);
-    //     }
-    // };
 
     return (
         <div className="min-h-screen flex flex-col">
@@ -172,10 +128,7 @@ const VerifyOtpContent = () => {
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
                         >
-                            <div
-                                className="flex justify-center gap-3 mb-8"
-                                // onPaste={handlePaste}
-                            >
+                            <div className="flex justify-center gap-1 xs:gap-3 mb-8">
                                 {otp.map((digit, index) => (
                                     <input
                                         key={index}
@@ -192,7 +145,7 @@ const VerifyOtpContent = () => {
                                         onKeyDown={(e) =>
                                             handleKeyDown(index, e)
                                         }
-                                        className="w-12 h-14 sm:w-14 sm:h-16 bg-transparent border-2 border-gray-600 rounded-[18px] text-white text-2xl text-center outline-none focus:border-primary-500 transition-colors"
+                                        className="w-10 xs:w-12 h-12 xs:h-14 sm:w-14 sm:h-16 bg-transparent border-2 border-gray-600  rounded-[14px] xs:rounded-[18px] text-white text-2xl text-center outline-none focus:border-primary-500 transition-colors"
                                     />
                                 ))}
                             </div>
@@ -204,21 +157,6 @@ const VerifyOtpContent = () => {
                             >
                                 {loading ? 'Verifying...' : 'Verify OTP'}
                             </button>
-
-                            {/* <div className="text-center mt-6">
-                                <p className="text-neutral-400 text-base mb-2">
-                                    Didn&apos;t receive the code?
-                                </p>
-                                <button
-                                    onClick={handleResend}
-                                    disabled={resendLoading}
-                                    className="text-primary-500 hover:text-primary-400 font-medium transition-colors disabled:opacity-50"
-                                >
-                                    {resendLoading
-                                        ? 'Sending...'
-                                        : 'Resend OTP'}
-                                </button>
-                            </div> */}
                         </motion.div>
 
                         <motion.p
@@ -249,7 +187,13 @@ const VerifyOtpContent = () => {
 };
 
 const VerifyOtpPage = () => (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+    <Suspense
+        fallback={
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-white">Loading...</div>
+            </div>
+        }
+    >
         <VerifyOtpContent />
     </Suspense>
 );

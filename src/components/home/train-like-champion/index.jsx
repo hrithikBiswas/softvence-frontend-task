@@ -7,7 +7,12 @@ import Title from '@/components/shared/Title';
 import PlayIcon from '@/components/svg/PlayIcon';
 import Image from 'next/image';
 import React from 'react';
-import { fadeInLeft, fadeInRight, smoothTransition, viewportSettings } from '@/lib/animations';
+import {
+    fadeInLeft,
+    fadeInRight,
+    smoothTransition,
+    viewportSettings,
+} from '@/lib/animations';
 
 const TrainLikeChampion = () => {
     return (
@@ -88,17 +93,21 @@ const TrainLikeChampion = () => {
                         }
                         margin="mb-6 md:mb-10"
                     />
-                    <div className="flex gap-8 items-center">
+                    <div className="flex gap-4 xs:gap-6 sm:gap-8 items-center">
                         <Button
                             text={'Punch Now'}
                             className={
-                                'rounded-[20px] bg-primary-600 px-14 py-5 font-bold text-2xl hover:bg-primary-700'
+                                'rounded-[20px] bg-primary-600 px-8 xs:px-14 py-4 xs:py-5 font-bold text-2xl hover:bg-primary-700'
                             }
                         />
                         <motion.div
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
-                            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                            transition={{
+                                type: 'spring',
+                                stiffness: 400,
+                                damping: 25,
+                            }}
                         >
                             <Button
                                 text={<PlayIcon />}
