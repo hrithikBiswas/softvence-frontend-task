@@ -115,7 +115,7 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-[url('/vector3.png')] bg-cover bg-no-repeat absolute bottom-0 pt-7 px-4 pb-4">
+            <div className="bg-[url('/vector.png')] bg-cover bg-no-repeat absolute bottom-0 pt-7 px-4 pb-4">
                 <SpecialtyPolygon />
                 <motion.h1
                     className="uppercase font-heading font-medium text-[22px] lg:text-[35px] py-2 lg:py-6"
