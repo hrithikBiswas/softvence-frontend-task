@@ -1,5 +1,4 @@
 'use client';
-import {Variants} from 'motion/react';
 
 export const springTransition = {
     type: 'spring',
@@ -28,7 +27,7 @@ export const staggeredContainer = {
 };
 
 export const fadeInUp = {
-    hidden: {opacity: 0, y: 20},
+    hidden: { opacity: 0, y: 20 },
     visible: {
         opacity: 1,
         y: 0,
@@ -37,7 +36,7 @@ export const fadeInUp = {
 };
 
 export const fadeInDown = {
-    hidden: {opacity: 0, y: -20},
+    hidden: { opacity: 0, y: -20 },
     visible: {
         opacity: 1,
         y: 0,
@@ -46,7 +45,7 @@ export const fadeInDown = {
 };
 
 export const fadeInLeft = {
-    hidden: {opacity: 0, x: -30},
+    hidden: { opacity: 0, x: -30 },
     visible: {
         opacity: 1,
         x: 0,
@@ -55,7 +54,7 @@ export const fadeInLeft = {
 };
 
 export const fadeInRight = {
-    hidden: {opacity: 0, x: 30},
+    hidden: { opacity: 0, x: 30 },
     visible: {
         opacity: 1,
         x: 0,
@@ -64,37 +63,37 @@ export const fadeInRight = {
 };
 
 export const scaleIn = {
-    hidden: {opacity: 0, scale: 0.95},
+    hidden: { opacity: 0, scale: 0.95 },
     visible: {
         opacity: 1,
         scale: 1,
-        transition: {...smoothTransition, duration: 0.4},
+        transition: { ...smoothTransition, duration: 0.4 },
     },
 };
 
 export const cardHover = {
-    rest: {scale: 1, y: 0},
+    rest: { scale: 1, y: 0 },
     hover: {
         scale: 1.02,
         y: -4,
-        transition: {...springTransition, stiffness: 400},
+        transition: { ...springTransition, stiffness: 400 },
     },
 };
 
 export const buttonTap = {
-    rest: {scale: 1},
-    hover: {scale: 1.02},
-    tap: {scale: 0.98},
+    rest: { scale: 1 },
+    hover: { scale: 1.02 },
+    tap: { scale: 0.98 },
 };
 
 export const iconHover = {
-    rest: {scale: 1},
-    hover: {scale: 1.15},
+    rest: { scale: 1 },
+    hover: { scale: 1.15 },
 };
 
 export const linkHover = {
-    rest: {opacity: 1},
-    hover: {opacity: 0.7},
+    rest: { opacity: 1 },
+    hover: { opacity: 0.7 },
 };
 
 export const viewportSettings = {
@@ -107,7 +106,7 @@ export const getStaggerDelay = (index, base = 0.08) => {
 };
 
 export const heroEntrance = {
-    hidden: {opacity: 0},
+    hidden: { opacity: 0 },
     visible: {
         opacity: 1,
         transition: {
@@ -118,7 +117,7 @@ export const heroEntrance = {
 };
 
 export const slideInFromRight = {
-    hidden: {opacity: 0, x: 50},
+    hidden: { opacity: 0, x: 50 },
     visible: {
         opacity: 1,
         x: 0,
@@ -130,7 +129,7 @@ export const slideInFromRight = {
 };
 
 export const slideInFromBottom = {
-    hidden: {opacity: 0, y: 30},
+    hidden: { opacity: 0, y: 30 },
     visible: {
         opacity: 1,
         y: 0,
@@ -142,7 +141,7 @@ export const slideInFromBottom = {
 };
 
 export const gentleBounce = {
-    hidden: {opacity: 0, y: 10},
+    hidden: { opacity: 0, y: 10 },
     visible: {
         opacity: 1,
         y: 0,

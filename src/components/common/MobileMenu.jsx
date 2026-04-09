@@ -6,10 +6,12 @@ import CloseIcon from '../svg/CloseIcon';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import useAuth from '@/hook/useAuth';
+import { useRouter } from 'next/navigation';
 
 const MobileMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { user, logout } = useAuth();
+    const router = useRouter();
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const closeMenu = () => setIsOpen(false);
