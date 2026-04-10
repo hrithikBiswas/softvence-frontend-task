@@ -2,11 +2,18 @@
 import { motion } from 'motion/react';
 import Button from '@/components/shared/Button';
 import React from 'react';
-import { smoothTransition, fadeInDown, viewportSettings } from '@/lib/animations';
+import {
+    smoothTransition,
+    fadeInDown,
+    viewportSettings,
+} from '@/lib/animations';
+import PolygonMolecules from '@/components/polygon/PolygonMoleCules';
 
 const Cta = () => {
     return (
-        <div className=" px-4.25 sm:px-6.25 mt-16 sm:mt-20 md:mt-28">
+        <div className="relative px-4.25 sm:px-6.25 mt-16 sm:mt-20 md:mt-28">
+            <PolygonMolecules className="-bottom-14 sm:-bottom-20 left-3 sm:left-4 md:left-0 rotate-90" />
+            <PolygonMolecules className="-top-[72px] sm:-top-[90px] right-7 rotate-0" />
             <div className="max-w-353.25 mx-auto bg-black rounded-[45px] text-gray-200 py-16 sm:py-10 md:py-14 lg:py-22 px-4 sm:px-6">
                 <div className="max-w-240.5 mx-auto flex flex-col items-center justify-center">
                     <motion.h2
@@ -38,9 +45,10 @@ const Cta = () => {
                         className="text-[#FFFFFFBF] text-center  mb-4 md:mb-6"
                     >
                         Join our community of fitness enthusiasts and athletes!
-                        By subscribing to our newsletter, you will receive expert
-                        training tips, nutrition guides, exclusive discounts,
-                        and the latest news on upcoming events and products.
+                        By subscribing to our newsletter, you will receive
+                        expert training tips, nutrition guides, exclusive
+                        discounts, and the latest news on upcoming events and
+                        products.
                     </motion.p>
                     <motion.div
                         className="overflow-hidden flex justify-between border-2 rounded-full p-1 md:p-2 w-full max-w-90 sm:max-w-130 md:max-w-200"
@@ -58,7 +66,11 @@ const Cta = () => {
                         <motion.div
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                            transition={{
+                                type: 'spring',
+                                stiffness: 400,
+                                damping: 25,
+                            }}
                         >
                             <Button
                                 text={'SUBSCRIBE'}

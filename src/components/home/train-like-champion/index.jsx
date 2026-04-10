@@ -13,10 +13,13 @@ import {
     smoothTransition,
     viewportSettings,
 } from '@/lib/animations';
+import PolygonMolecules from '@/components/polygon/PolygonMoleCules';
 
 const TrainLikeChampion = () => {
     return (
-        <div className="px-4.25 sm:px-6.25 mt-16 sm:mt-20 md:mt-28">
+        <div className="relative px-4.25 sm:px-6.25 mt-16 sm:mt-20 md:mt-28">
+            <PolygonMolecules className="-top-[60px] sm:-top-[100px] left-10 rotate-90" />
+            <PolygonMolecules className="-top-[55px] sm:-top-[80px] right-[30px] sm:right-[100px]" />
             <Title
                 title={'Train Like a Champion'}
                 subtitle={'Unleash Your Power with Expert Boxing Training'}
