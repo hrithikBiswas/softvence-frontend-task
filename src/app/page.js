@@ -8,7 +8,7 @@ import TrainLikeChampion from '@/components/home/train-like-champion';
 
 export default function Home() {
     return (
-        <div className="max-h-fit">
+        <div className="max-h-fit overflow-hidden">
             <Header />
             <Hero />
             <Products />
